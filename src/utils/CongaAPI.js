@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 
-const AUTH_URL = 'https://pinksamurais5--congacpq.sandbox.my.salesforce.com/services/oauth2/token';
-const BASE_URL = 'https://pinksamurais5--congacpq.sandbox.my.salesforce.com';
-const CLIENT_ID = '';
-const CLIENT_SECRET = '';
+const BASE_URL = import.meta.env.VITE_SALESFORCE_BASE_URL;
+const CLIENT_ID =  import.meta.env.VITE_SALESFORCE_CLIENT_ID;
+const CLIENT_SECRET = import.meta.env.VITE_SALESFORCE_CLIENT_SECRET;
+const AUTH_URL = BASE_URL + '/services/oauth2/token';
 const AUTH_TOKEN = '';
 
 const getToken = async () => {

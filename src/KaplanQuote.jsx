@@ -78,34 +78,6 @@ export default function KaplanQuote() {
     const loadAllData = async () => {
       setDataLoading(true);
 
-       const fetchData = async () => {
-        try {
-          const response = await fetch('https://pinksamurais5--congacpq.sandbox.my.salesforce.com/services/oauth2/token', {
-                                            method: 'POST',
-                                            headers: {
-                                              'Content-Type': 'application/x-www-form-urlencoded'
-                                            },
-                                            body: new URLSearchParams({
-                                              grant_type: 'client_credentials', // or authorization_code
-                                             })
-                                          });
-          
-          // fetch doesn't throw on 404/500, check manualy
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          
-          const result = await response.json();
-          console.log(result);
-          if (result && result.access_token) {
-            const token = result.access_token;
-          }
-        } catch (error) {
-          console.error("Fetch error:", error.message);
-        }
-      };
-
-      fetchData();
 
       const [
         coursesResult,
