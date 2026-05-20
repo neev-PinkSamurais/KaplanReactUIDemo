@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import toast, { Toaster } from 'react-hot-toast';
 import './kaplanQuote.css';
 import {
   fetchCourses,
@@ -186,6 +187,25 @@ export default function KaplanQuote() {
         listPrice: price,
       });
       setSubmitStatus('success');
+      toast.success('Quote sent Successfully!' , { duration: 4500 });
+
+      setTimeout(() => {
+        // Reset all form data
+        setStep(1);
+        setLang(languages[0] ?? "English");
+        setCourse(courses[0]?.id ?? "general");
+        setDestination(destinations[0]?.id ?? "uk");
+        setDuration(durations[0] ?? "8 weeks");
+        setStartDate(startDates[0] ?? "");
+        setAccommodation(accommodationTypes[0]?.id ?? "residence");
+        setLevel(proficiencyLevels[0] ?? "Intermediate");
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setNationality("");
+      }, 3000);
+
+
     } catch {
       setSubmitStatus('error');
     } finally {
@@ -197,7 +217,7 @@ export default function KaplanQuote() {
     setSubmittingE(true);
     setSubmitStatus(null);
     try {
-       const textDate = startDate;
+      const textDate = startDate;
       const dateObject = new Date(`${textDate.split(" ")[0]} 1, ${textDate.split(" ")[1]}`);
 
       await submitQuoteRequest({
@@ -217,6 +237,26 @@ export default function KaplanQuote() {
         sendEmail: true,
       });
       setSubmitStatus('success');
+
+      toast.success('Quote sent Successfully!' , { duration: 4500 });
+      
+      setTimeout(() => {
+        // Reset all form data
+        setStep(1);
+        setLang(languages[0] ?? "English");
+        setCourse(courses[0]?.id ?? "general");
+        setDestination(destinations[0]?.id ?? "uk");
+        setDuration(durations[0] ?? "8 weeks");
+        setStartDate(startDates[0] ?? "");
+        setAccommodation(accommodationTypes[0]?.id ?? "residence");
+        setLevel(proficiencyLevels[0] ?? "Intermediate");
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setNationality("");
+        setSubmitStatus("");
+      }, 5000);
+
     } catch {
       setSubmitStatus('error');
     } finally {
@@ -248,6 +288,7 @@ export default function KaplanQuote() {
     return (
       <>
         <style>{styles}</style>
+        <Toaster  containerStyle={{ zIndex: 99999 }} /> {/* Required container */}
         <div className="kq-root">
           <div className="kq-card">
             <div className="kq-header">
@@ -269,6 +310,7 @@ export default function KaplanQuote() {
   return (
     <>
       <style>{styles}</style>
+      <Toaster  containerStyle={{ zIndex: 99999 }} /> {/* Required container */}
       <div className="kq-root">
         <div className="kq-card">
 
