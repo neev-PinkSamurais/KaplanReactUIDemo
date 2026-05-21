@@ -391,7 +391,7 @@ export default function KaplanQuote() {
           {/* Progress */}
           <div className="kq-progress">
             <div className="kq-steps">
-              {["Language", "Course", "Destination", "Dates", "Your info", "Quote"].map((label, i) => {
+              {[ "Course", "Language", "Destination", "Dates", "Your info", "Quote"].map((label, i) => {
                 const n = i + 1;
                 const cls = n < step ? "kq-step done" : n === step ? "kq-step active" : "kq-step";
                 return (
@@ -407,49 +407,16 @@ export default function KaplanQuote() {
           <div className="kq-body">
 
             {/* Step 1: Course */}
+            
             {step === 1 && (
               <div>
                 <h2 className="kq-screen-title">What would you like to study?</h2>
-                <p className="kq-screen-sub">Choose a langugage to get started</p>
+                <p className="kq-screen-sub">Choose a course to get started</p>
                 <div className="kq-tabs">
                   {courses.map((c) => (
                     <button key={c.id} className={`kq-tab${course === c.id ? " active" : ""}`} onClick={() => setCourse(c.id)}>{c.title}</button>
                   ))}
                 </div>
-                <div style={{ marginTop: 16, marginBottom: 20 }}>
-                  {/* <p style={{ fontSize: 13, fontWeight: 600, color: "#0d1b2e", marginBottom: 8 }}>Language</p>
-                  <div className="kq-tabs">
-                    {languages.map((l) => (
-                      <button key={l} className={`kq-tab${lang === l ? " active" : ""}`} onClick={() => setLang(l)}>{l}</button>
-                    ))}
-                  </div> */}
-
-                  {languages.length > 0 && (
-                  <div>
-                    <p style={{ fontSize: 13, fontWeight: 600, color: "#0d1b2e", marginBottom: 4 }}>Language</p>
-                    <p style={{ fontSize: 13, color: "#6a9bc0", fontWeight: 300, marginBottom: 12 }}>Select the Language you want</p>
-                    <div className="kq-grid-2">
-                      {languages.map(l => (
-                        <div key={l} className={`kq-option${lang === l ? " selected" : ""}`} onClick={() => setLang(l)}>
-                          <h4>{l}</h4>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-                <div className="kq-nav">
-                  <button className="kq-btn-primary" onClick={next}>Continue →</button>
-                </div>
-                </div>
-                </div>
-                )}
-              
-              {/* Step 5: Personal Info */}
-            {step === 2 && (
-              <div>
-                <h2 className="kq-screen-title">What would you like to study?</h2>
-                <p className="kq-screen-sub">Choose a langugage to get started</p>
-
               <div style={{ marginTop: 16, marginBottom: 20 }}>
                 {courseTypeOptions.length > 0 && (
                   <div>
@@ -465,11 +432,43 @@ export default function KaplanQuote() {
                   </div>
                 )}
                 <div className="kq-nav">
-                  <button className="kq-btn-secondary" onClick={prev}>← Back</button>
                   <button className="kq-btn-primary" onClick={next}>Continue →</button>
                 </div>
               </div></div>
             )}
+
+            {step === 2 && (
+              <div>
+                <h2 className="kq-screen-title">Language</h2>
+                <p className="kq-screen-sub">Select the Language you want</p>
+                <div style={{ marginTop: 16, marginBottom: 20 }}>
+                  {/* <p style={{ fontSize: 13, fontWeight: 600, color: "#0d1b2e", marginBottom: 8 }}>Language</p>
+                  <div className="kq-tabs">
+                    {languages.map((l) => (
+                      <button key={l} className={`kq-tab${lang === l ? " active" : ""}`} onClick={() => setLang(l)}>{l}</button>
+                    ))}
+                  </div> */}
+
+                  {languages.length > 0 && (
+                  <div>
+                    
+                    <div className="kq-grid-2">
+                      {languages.map(l => (
+                        <div key={l} className={`kq-option${lang === l ? " selected" : ""}`} onClick={() => setLang(l)}>
+                          <h4>{l}</h4>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                <div className="kq-nav">
+                  <button className="kq-btn-secondary" onClick={prev}>← Back</button>
+                  <button className="kq-btn-primary" onClick={next}>Continue →</button>
+                </div>
+
+                </div>
+                </div>
+                )}
 
             {/* Step 3: Destination */}
             {step === 3 && (
